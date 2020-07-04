@@ -41,7 +41,7 @@ const passwords = [
         break
     }
     const browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       executablePath: platformExecutablePath,
       args: args
     });
