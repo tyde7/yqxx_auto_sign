@@ -1,0 +1,16 @@
+{
+  "name": "HIT_Auto_Sign",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "tyde7",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "puppeteer": "^2.1.1"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node auto_sign.js"
+  }
+}
