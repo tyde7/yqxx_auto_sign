@@ -22,10 +22,10 @@ const passwords = [
   for (let a of passwords) {
     const datestring = new Date().toLocaleDateString("zh-CN");
     // const read = fs.readFileSync("date.txt", "utf-8");
-    if (read === datestring) {
-      console.debug('signed.');
-      return;
-    };
+    // if (read === datestring) {
+    //   console.debug('signed.');
+    //   return;
+    // };
     let platformExecutablePath = "";
     switch(os.platform()){
       case "windows":
@@ -35,7 +35,7 @@ const passwords = [
         platformExecutablePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
         break;
       case "linux":
-        platformExecutablePath = "/usr/bin/google-chrome-stable"
+        platformExecutablePath = "google-chrome-stable"
         break
     }
     const browser = await puppeteer.launch({
