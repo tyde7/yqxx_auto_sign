@@ -1,14 +1,13 @@
-# This is a basic workflow to help you get started with Actions
+# Sign actions.
 
 name: Sign
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# Trigger on push or everyday 10:21 AM @ "Asia/Shanghai" Timezone (UTC+8).
 on:
   push:
     branches: [ master ]
-  # pull_request:
-  #   branches: [ master ]
+  schedule:
+    - cron:  '21 2 * * *'
 
 jobs:
   build:

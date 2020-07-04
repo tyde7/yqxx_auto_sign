@@ -62,7 +62,7 @@ const passwords = [
       console.log("Signed.")
     }
     else {
-      await page.screenshot({ path: 'tofill.png' })
+      // await page.screenshot({ path: 'tofill.png' })
       // await page.evaluateOnNewDocument(function() {
       //   navigator.geolocation.getCurrentPosition = function (cb) {
       //     setTimeout(() => {
