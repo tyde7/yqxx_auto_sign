@@ -27,6 +27,7 @@ const passwords = [
     //   return;
     // };
     let platformExecutablePath = "";
+    let args = [];
     switch(os.platform()){
       case "windows":
         platformExecutablePath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
@@ -36,11 +37,13 @@ const passwords = [
         break;
       case "linux":
         platformExecutablePath = "google-chrome-stable"
+        args.push("--no-sandbox")
         break
     }
     const browser = await puppeteer.launch({
       headless: false,
-      executablePath: platformExecutablePath
+      executablePath: platformExecutablePath,
+      args: args
     });
     const page = await browser.newPage();
     await page.goto('http://xg.hit.edu.cn/zhxy-xgzs/xg_mobile/xs/yqxx');
