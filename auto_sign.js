@@ -21,7 +21,7 @@ const passwords = [
 (async () => {
   for (let a of passwords) {
     const datestring = new Date().toLocaleDateString("zh-CN");
-    const read = fs.readFileSync("date.txt", "utf-8");
+    // const read = fs.readFileSync("date.txt", "utf-8");
     if (read === datestring) {
       console.debug('signed.');
       return;
@@ -57,7 +57,6 @@ const passwords = [
     if (is_same_day(latest_upload)) {
       await browser.close();
       console.log("Signed.")
-
     }
     else {
       await page.screenshot({ path: 'tofill.png' })
@@ -108,7 +107,7 @@ const passwords = [
       rcode = await r.json()
       console.log(rcode);
     }
-    fs.writeFileSync("date.txt", datestring, "utf-8");
+    // fs.writeFileSync("date.txt", datestring, "utf-8");
   }
 })();
 

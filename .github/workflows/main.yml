@@ -1,14 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Sign
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  # pull_request:
+  #   branches: [ master ]
 
 jobs:
   build:
@@ -17,10 +17,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
       - name: Install
-        uses: tyde7/yqxx_auto_sign@master # TODO: can I use a variable here?
+        uses: tyde7/yqxx_auto_sign@master
         with:
           args: yarn
       - name: Test
         uses: tyde7/yqxx_auto_sign@master
+        env: 
+          JWC_USERNAME: ${{ secrets.JWC_USERNAME }}
+          JWC_PASSWORD: ${{ secrets.JWC_PASSWORD }}
+          WECHAT_ROBOT_HOOK: ${{ secrets.WECHAT_ROBOT_HOOK }}
         with:
           args: yarn test
