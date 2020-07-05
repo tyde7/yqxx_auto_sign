@@ -6,8 +6,10 @@ name: Sign
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'auto_sign.js'
   schedule:
-    - cron:  '21 2 * * *'
+    - cron:  '36 1 * * *'
 
 jobs:
   build:
