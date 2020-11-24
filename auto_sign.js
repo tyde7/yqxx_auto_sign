@@ -30,6 +30,7 @@ const passwords = [
     let args = [];
     switch(os.platform()){
       case "windows":
+      case "win32":
         platformExecutablePath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
         break;
       case "darwin":
@@ -82,7 +83,7 @@ const passwords = [
       // });
       await page.click('body > div.content > div.content_nr > div:nth-child(1) > a > div')
       await page.waitForNavigation();
-      await page.evaluate(() => { document.getElementById("txfscheckbox").checked = true });
+      await page.evaluate(() => { document.getElementById("txfscheckbox").checked = true; document.getElementById("tw").value=36; document.getElementById("tw1").value=2+Math.round(Math.random()*3) });
       await page.click('body > div.right_btn');
       await page.waitForNavigation();
       console.log("New Signed.");

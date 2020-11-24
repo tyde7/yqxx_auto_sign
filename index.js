@@ -1,3 +1,4 @@
+// obselete
 const puppeteer = require('puppeteer');
 is_same_day = function(t)
 {
