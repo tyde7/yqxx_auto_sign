@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const os = require('os');
 const process = require('process');
+const { exception } = require("console");
 is_same_day = function (t) {
   return new Date(t).toDateString() === new Date().toDateString();
 };
@@ -28,7 +29,7 @@ const passwords = [
     // };
     let platformExecutablePath = "";
     let args = [];
-    switch(os.platform()){
+    switch (os.platform()) {
       case "windows":
       case "win32":
         platformExecutablePath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
@@ -42,7 +43,7 @@ const passwords = [
         break
     }
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: false,
       executablePath: platformExecutablePath,
       args: args
     });
@@ -54,10 +55,24 @@ const passwords = [
     await page.waitFor(5000)
 
     await page.goto('http://xg.hit.edu.cn/zhxy-xgzs/xg_mobile/xs/yqxx');
-    await page.waitFor(10000);
-    const latest_upload = await page.evaluate(() => {
-      return document.getElementsByClassName("content_title")[1].innerText.split("：")[1];
-    });
+    let try_time = 5;
+    let latest_upload = "";
+    while (try_time > 0) {
+      try {
+        await page.waitFor(15000);
+        latest_upload = await page.evaluate(() => {
+          return document.getElementsByClassName("content_title")[1].innerText.split("：")[1];
+        });
+        break;
+      } catch {
+        try_time -= 1;
+      }
+    }
+    if(try_time==0){
+      await browser.close();
+      console.log("Found error. Try_time is zero but iframe is still loading. Critial internet issue?")
+      return;
+    }
     if (is_same_day(latest_upload)) {
       await browser.close();
       console.log("Signed.")
@@ -83,7 +98,7 @@ const passwords = [
       // });
       await page.click('body > div.content > div.content_nr > div:nth-child(1) > a > div')
       await page.waitForNavigation();
-      await page.evaluate(() => { document.getElementById("txfscheckbox").checked = true; document.getElementById("tw").value=36; document.getElementById("tw1").value=2+Math.round(Math.random()*3) });
+      await page.evaluate(() => { document.getElementById("txfscheckbox").checked = true; document.getElementById("tw").value = 36; document.getElementById("tw1").value = 2 + Math.round(Math.random() * 3) });
       await page.click('body > div.right_btn');
       await page.waitForNavigation();
       console.log("New Signed.");
