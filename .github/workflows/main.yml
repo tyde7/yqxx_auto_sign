@@ -27,6 +27,7 @@ jobs:
           JWC_USERNAME: ${{ secrets.JWC_USERNAME }}
           JWC_PASSWORD: ${{ secrets.JWC_PASSWORD }}
           WECHAT_ROBOT_HOOK: ${{ secrets.WECHAT_ROBOT_HOOK }}
+          CURRENT_POS: ${{ secrets.WECHAT_ROBOT_HOOK }}
         with:
           args: yarn test
         timeout-minutes: 45
