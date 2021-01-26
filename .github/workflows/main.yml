@@ -29,3 +29,4 @@ jobs:
           WECHAT_ROBOT_HOOK: ${{ secrets.WECHAT_ROBOT_HOOK }}
         with:
           args: yarn test
+        timeout-minutes: 45

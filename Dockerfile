@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:14
 
 LABEL "com.github.actions.name"="Automatically Sign for yqxx Everyday"
 LABEL "com.github.actions.description"="A GitHub Action / Docker image for auto sign. Use chrome headless."

@@ -14,7 +14,8 @@ const passwords = [
     p: process.env.JWC_PASSWORD,
     lat: process.env.SIM_LAT,
     long: process.env.SIM_LONG,
-    sa: process.env.WECHAT_ROBOT_HOOK
+    sa: process.env.WECHAT_ROBOT_HOOK,
+    current_pos: process.env.CURRENT_POS
   }
 ];
 
@@ -68,7 +69,7 @@ const passwords = [
         try_time -= 1;
       }
     }
-    if(try_time==0){
+    if (try_time == 0) {
       await browser.close();
       console.log("Found error. Try_time is zero but iframe is still loading. Critial internet issue?")
       return;
@@ -99,9 +100,13 @@ const passwords = [
       await page.click('body > div.content > div.content_nr > div:nth-child(1) > a > div')
       await page.waitForNavigation();
       await page.evaluate(() => { document.getElementById("txfscheckbox").checked = true; document.getElementById("tw").value = 36; document.getElementById("tw1").value = 2 + Math.round(Math.random() * 3) });
+      await page.evaluate(() => { document.getElementById("txfscheckbox").checked = true; $("#gnxxdz").val(current_pos) });
       await page.click('body > div.right_btn');
       await page.waitForNavigation();
-      console.log("New Signed.");
+      console.log("Signed for 每日上报.");
+
+      // 上报上午体温
+
       await browser.close();
     }
     if (a.sa) {
