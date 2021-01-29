@@ -9,7 +9,7 @@ on:
     paths:
       - 'auto_sign.js'
   schedule:
-    - cron:  '36 1 * * *'
+    - cron:  '16 1 * * *'
 
 jobs:
   build:
@@ -28,6 +28,8 @@ jobs:
           JWC_PASSWORD: ${{ secrets.JWC_PASSWORD }}
           WECHAT_ROBOT_HOOK: ${{ secrets.WECHAT_ROBOT_HOOK }}
           CURRENT_POS: ${{ secrets.WECHAT_ROBOT_HOOK }}
+          SIM_LAT: ${{ secrets.SIM_LAT }}
+          SIM_LONG: ${{ secrets.SIM_LONG }}
         with:
           args: yarn test
-        timeout-minutes: 45
+        timeout-minutes: 30
