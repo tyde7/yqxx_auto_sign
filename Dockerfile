@@ -1,13 +1,12 @@
 FROM node:14
 
-LABEL "com.github.actions.name"="Automatically Sign for yqxx Everyday"
-LABEL "com.github.actions.description"="A GitHub Action / Docker image for auto sign. Use chrome headless."
-LABEL "com.github.actions.icon"="thumbs-up"
-LABEL "com.github.actions.color"="blue"
-
-LABEL "repository"="https://github.com/tyde7/everyday_yqxx_sign"
-LABEL "homepage"="https://github.com/tyde7/everyday_yqxx_sign"
-LABEL "maintainer"="tyde7"
+LABEL "com.github.actions.name"="Automatically Sign for yqxx Everyday" \
+     "com.github.actions.description"="A GitHub Action / Docker image for auto sign. Use chrome headless." \
+     "com.github.actions.icon"="thumbs-up" \
+     "com.github.actions.color"="blue" \
+     "repository"="https://github.com/tyde7/everyday_yqxx_sign" \
+     "homepage"="https://github.com/tyde7/everyday_yqxx_sign" \
+     "maintainer"="tyde7"
 
 RUN  apt-get update \
      # See https://crbug.com/795759
