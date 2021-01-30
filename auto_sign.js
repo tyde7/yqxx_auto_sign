@@ -144,8 +144,10 @@ const passwords = [
       await page.evaluate((current_pos) => { $("input#checkbox")[0].checked = true; $("#gnxxdz").val(current_pos) }, current_pos);
       await page.click('body > div.right_btn');
       await page.waitForXPath('//*[@id="nrundefined"]/div[2]');
-      await page.click("#nrundefined > div.weui-dialog__ft > a.weui-dialog__btn.primary");
+      console.log("Prompt showed.");
       await page.waitFor(10000);
+      await page.click("#nrundefined > div.weui-dialog__ft > a.weui-dialog__btn.primary");
+      await page.waitFor(30000);
       console.log("Signed for 每日上报.");
 
       // 上报上午体温
