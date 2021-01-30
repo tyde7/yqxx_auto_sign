@@ -94,7 +94,7 @@ const passwords = [
     status = await page.evaluate(() => {
       return document.getElementsByClassName("content2")[0].getElementsByClassName("content_title")[1].innerText;
     });
-    if (status.search("未提交" < 0)) {
+    if (is_same_day(latest_upload) && status.search("未提交") >= 0) {
       resubmit = true;
       console.log(`Found status ${status}, going to resubmit.`)
     }
