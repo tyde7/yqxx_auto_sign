@@ -30,6 +30,7 @@ jobs:
           CURRENT_POS: ${{ secrets.WECHAT_ROBOT_HOOK }}
           SIM_LAT: ${{ secrets.SIM_LAT }}
           SIM_LONG: ${{ secrets.SIM_LONG }}
+          EXTRAUSERS: ${{ secrets.EXTRAUSERS }}
         with:
           args: yarn test
         timeout-minutes: 30

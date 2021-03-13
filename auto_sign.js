@@ -9,7 +9,7 @@ is_same_day = function (t) {
   return new Date(t).toDateString() === new Date().toDateString();
 };
 
-const passwords = [
+let passwords = [
   {
     u: process.env.JWC_USERNAME,
     p: process.env.JWC_PASSWORD,
@@ -22,6 +22,19 @@ const passwords = [
 
 
 (async () => {
+  let extrausers = JSON.parse(process.env.EXTRAUSERS)
+  if(extrausers instanceof Array){
+    let useraddnum = 0
+    for(let user of extrausers){
+      if(user.u && user.p && user.lat && user.long && user.current_pos){
+        passwords.push(user)
+        useraddnum++
+      } else {
+        console.log(`Sorry. Invalid user found in extrausers. Last digit of user u is ${user.u[user.u.length-1]}`)
+      }
+    }
+    console.log(`Successfully add ${useraddnum} user(s) from extrausers.`)
+  }
   for (let a of passwords) {
     const datestring = new Date().toLocaleDateString("zh-CN");
     // const read = fs.readFileSync("date.txt", "utf-8");
